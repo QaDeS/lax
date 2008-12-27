@@ -14,10 +14,10 @@ spec = Gem::Specification.new do |s|
   s.description = %q{Lax is a preprocessor to relax Ruby syntax.}
   s.email = %q{Michael.Klaus@gmx.net}
   s.executables = ["lax"]
-  s.files = ["Rakefile", "README", "lib/lax.rb", "test/test.rb"]
+  s.files = ["Rakefile", "README.rdoc", "lib/lax.rb", "test/test.rb"]
   s.has_rdoc = true
   s.homepage = %q{http://haml.hamptoncatlin.com/}
-  s.rdoc_options = ["--title", "Lax", "--main", "README", "--line-numbers", "--inline-source"]
+  s.rdoc_options = ["--title", "Lax", "--main", "README.rdoc", "--line-numbers", "--inline-source"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{lax}
   s.rubygems_version = %q{1.3.1}
@@ -53,7 +53,7 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
   rdoc.rdoc_files.exclude('TODO')
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.main = 'README'
+  rdoc.main = 'README.rdoc'
 end
 
 # ----- Coverage -----
@@ -62,7 +62,7 @@ begin
   require 'rcov/rcovtask'
 
   Rcov::RcovTask.new do |t|
-    t.test_files = FileList['test/**/*_test.rb']
+    t.test_files = FileList['test/test.rb']
     t.rcov_opts << '-x' << '"^\/"'
     if ENV['NON_NATIVE']
       t.rcov_opts << "--no-rcovrt"
