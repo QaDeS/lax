@@ -1,0 +1,39 @@
+= Lax
+
+Lax is a Ruby preprocessor for enabling a relaxed and more concise syntax: You can omit the keywords <tt>do</tt> and <tt>end</tt>.
+To get Lax to work in your code, you have to <tt>require</tt> Lax and then load your <tt>.rbl</tt> code.
+
+Example:
+<tt>test.rb</tt>
+  require 'rubygems'
+  require 'lax'
+
+  require 'rbltest'
+  # or: load 'rbltest.rbl'
+
+<tt>rbltest.rbl</tt>
+  lines = <<END
+    one
+    two
+    three
+  END
+
+  lines.each |line|
+    if line.match /t/
+      puts line
+    else
+      puts "-" + line
+
+
+== Executable
+Lax also includes an executable which lets you preprocess single <tt>.rbl</tt> files.
+
+Example:
+  lax rbltest.rbl
+
+
+== Disclaimer
+This project is *not* meant to propagate pythonic syntax or spark another "indentation as syntax" war.
+It was purely born out of lazyness and sloppyness, as I got tired of searching missing <tt>do</tt>s and <tt>end</tt>s
+in my code.
+Lax was derived from <tt>pyrb.rb</tt> at http://xtargets.com/snippets/posts/show/68.
