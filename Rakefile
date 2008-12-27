@@ -1,42 +1,19 @@
 require 'rubygems'
 require 'rake'
+load 'lax.gemspec'
+
 
 # ----- Packaging -----
 
 require 'rake/gempackagetask'
 
-spec = Gem::Specification.new do |s|
-  s.name = %q{lax}
-  s.version = "0.0.1"
-
-  s.authors = ["Michael Klaus"]
-  s.date = %q{2008-12-27}
-  s.description = %q{Lax is a preprocessor to relax Ruby syntax.}
-  s.email = %q{Michael.Klaus@gmx.net}
-  s.executables = ["lax"]
-  s.files = ["Rakefile", "README.rdoc", "lib/lax.rb", "test/test.rb"]
-  s.has_rdoc = true
-  s.homepage = %q{http://haml.hamptoncatlin.com/}
-  s.rdoc_options = ["--title", "Lax", "--main", "README.rdoc", "--line-numbers", "--inline-source"]
-  s.require_paths = ["lib"]
-  s.rubyforge_project = %q{lax}
-  s.rubygems_version = %q{1.3.1}
-  s.summary = %q{A preprocessor to relax Ruby's syntax.}
-  s.test_files = ["test/test.rb"]
-
-end
-Rake::GemPackageTask.new(spec) do |pkg|
-  if Rake.application.top_level_tasks.include?('release')
-    pkg.need_tar_gz  = true
-    pkg.need_tar_bz2 = true
-    pkg.need_zip     = true
-  end
+Rake::GemPackageTask.new(LaxSpec) do |pkg|
 end
 
 desc "Install Lax as a gem."
 task :install => [:package] do
   sudo = RUBY_PLATFORM =~ /win32/ ? '' : 'sudo'
-  sh %{#{sudo} gem install --no-ri pkg/#{spec.name}-#{spec.version}}
+  sh %{#{sudo} gem install --no-ri pkg/#{NAME}-#{GEM_VERSION}}
 end
 
 # ----- Documentation -----
